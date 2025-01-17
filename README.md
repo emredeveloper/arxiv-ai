@@ -1,7 +1,7 @@
 # arXiv Makale Gösterim Uygulaması
 
 Bu Streamlit uygulaması, arXiv'deki güncel makine öğrenmesi makalelerini çeker ve kullanıcıya gösterir. Kullanıcılar, makalelerin başlıklarını ve özetlerini Türkçeye çevirebilir, makaleleri beğenebilir ve GitHub bağlantılarını görüntüleyebilir.
-
+Bu linkten siteye erişebilirsin : https://arxiv-ai.streamlit.app/
 ## Özellikler
 
 - **Güncel Makaleler**: arXiv'den "Computer Science > Machine Learning" kategorisindeki güncel makaleleri çeker.
