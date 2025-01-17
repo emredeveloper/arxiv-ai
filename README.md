@@ -40,17 +40,6 @@ Bu Streamlit uygulaması, arXiv'deki güncel makine öğrenmesi makalelerini çe
 2. **Tarayıcıda Görüntüleme**:
    - Uygulama başlatıldıktan sonra, tarayıcınızda otomatik olarak açılacaktır. Eğer açılmazsa, terminalde gösterilen URL'yi tarayıcınıza yapıştırın (örneğin: `http://localhost:8501`).
 
-## Ekran Görüntüleri
-
-### Ana Sayfa
-![Ana Sayfa](screenshots/home.png)
-
-### Makine Öğrenmesi Sayfası
-![Makine Öğrenmesi](screenshots/machine_learning.png)
-
-### Transformers Sayfası
-![Transformers](screenshots/transformers.png)
-
 ## Katkıda Bulunma
 
 Eğer bu projeye katkıda bulunmak isterseniz, lütfen aşağıdaki adımları takip edin:
@@ -68,46 +57,3 @@ Bu proje MIT Lisansı altında lisanslanmıştır. Daha fazla bilgi için `LICEN
 ## İletişim
 
 Eğer herhangi bir sorunuz veya öneriniz varsa, lütfen [GitHub Issues](https://github.com/kullanici_adi/proje_repo/issues) sayfasından bize ulaşın.
-
----
-
-### Açıklamalar:
-1. **Başlık ve Açıklama**:
-   - Projenin ne yaptığını kısa ve öz bir şekilde açıklar.
-
-2. **Özellikler**:
-   - Uygulamanın temel özelliklerini listeleyerek kullanıcıların ne bekleyeceğini açıklar.
-
-3. **Kurulum**:
-   - Projenin nasıl kurulacağını adım adım açıklar.
-
-4. **Çalıştırma**:
-   - Uygulamanın nasıl çalıştırılacağını açıklar.
-
-5. **Ekran Görüntüleri**:
-   - Uygulamanın ekran görüntülerini ekleyerek kullanıcıların arayüzü görmesini sağlar.
-
-6. **Katkıda Bulunma**:
-   - Diğer geliştiricilerin projeye nasıl katkıda bulunabileceğini açıklar.
-
-7. **Lisans**:
-   - Projenin lisans bilgilerini belirtir.
-
-8. **İletişim**:
-   - Kullanıcıların soru veya önerilerini iletebileceği bir iletişim yöntemi sağlar.
-
----
-
-### Nasıl Kullanılır?
-1. **Dosyayı Oluştur**:
-   - Proje dizininizde `README.md` adında bir dosya oluşturun ve yukarıdaki içeriği bu dosyaya ekleyin.
-
-2. **Ekran Görüntüleri**:
-   - Ekran görüntülerini `screenshots` adında bir klasöre ekleyin ve `README.md` dosyasında bu görüntülere bağlantı verin.
-
-3. **Güncelleme**:
-   - Projenizde yeni özellikler veya değişiklikler yaptığınızda, `README.md` dosyasını da güncellemeyi unutmayın.
-
----
-
-Bu `README.md` dosyası, projenizi daha profesyonel ve kullanıcı dostu hale getirecektir. Ayrıca, diğer geliştiricilerin projenizi anlamasını ve katkıda bulunmasını kolaylaştırır.
