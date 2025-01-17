@@ -24,10 +24,10 @@ def main_menu():
     if st.session_state.menu_option == "Ana Sayfa":
         st.sidebar.markdown("""
         <div style="text-align: center;">
-            <a href="https://github.com" target="_blank" style="margin-right: 10px;">
+            <a href="https://github.com/emredeveloper" target="_blank" style="margin-right: 10px;">
                 <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width="30" alt="GitHub">
             </a>
-            <a href="https://linkedin.com" target="_blank">
+            <a href="https://www.linkedin.com/in/cihatemrekaratas/" target="_blank">
                 <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="30" alt="LinkedIn">
             </a>
         </div>
