@@ -53,7 +53,3 @@ Eğer bu projeye katkıda bulunmak isterseniz, lütfen aşağıdaki adımları t
 ## Lisans
 
 Bu proje MIT Lisansı altında lisanslanmıştır. Daha fazla bilgi için `LICENSE` dosyasını inceleyebilirsiniz.
-
-## İletişim
-
-Eğer herhangi bir sorunuz veya öneriniz varsa, lütfen [GitHub Issues](https://github.com/kullanici_adi/proje_repo/issues) sayfasından bize ulaşın.
