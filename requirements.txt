@@ -1,0 +1,4 @@
+streamlit==1.32.0
+arxiv==2.1.0
+deep-translator==1.11.4
+python-dotenv==1.0.0
