@@ -49,7 +49,3 @@ Eğer bu projeye katkıda bulunmak isterseniz, lütfen aşağıdaki adımları t
 3. Değişikliklerinizi yapın ve commit edin (`git commit -am 'Yeni özellik eklendi'`).
 4. Branch'inizi push edin (`git push origin yeni-ozellik`).
 5. GitHub üzerinden bir Pull Request oluşturun.
-
-## Lisans
-
-Bu proje MIT Lisansı altında lisanslanmıştır. Daha fazla bilgi için `LICENSE` dosyasını inceleyebilirsiniz.
