@@ -1,12 +1,13 @@
 # arXiv Article Explorer
 
-This Streamlit application fetches the latest machine learning papers from arXiv and presents them in a user-friendly interface. Users can translate titles and abstracts into Turkish, mark papers as favorites, and quickly access any GitHub repositories that are mentioned.
+This Streamlit application fetches the latest machine learning papers from arXiv and presents them in a user-friendly interface.
+Users can translate titles and abstracts into Turkish, mark papers as favorites, and quickly access any GitHub repositories mentioned in the summaries.
 
 Access the hosted demo at https://arxiv-ai.streamlit.app/
 
 ## Features
 
-- **Fresh Papers**: Retrieves up-to-date publications from the "Computer Science > Machine Learning" category on arXiv.
+- **Fresh Papers**: Retrieve up-to-date publications from the "Computer Science > Machine Learning" category on arXiv.
 - **Translation Support**: Translate paper titles and abstracts into Turkish on demand.
 - **Reaction System**: Let users like papers and persist their likes in the current session.
 - **GitHub Discovery**: Surface GitHub links when they are referenced in the paper summary.

@@ -58,7 +58,7 @@ st.title("📚 Latest Machine Learning Papers on arXiv")
 
 # Session state for favorites and articles
 if "favorites" not in st.session_state:
-    st.session_state.favorites = set()
+    st.session_state.favorites = []
 if "articles" not in st.session_state:
     st.session_state.articles = []
 if "likes" not in st.session_state:
@@ -184,9 +184,9 @@ if st.session_state.menu_option == "Home":
     st.session_state.user_likes = {
         idx for idx in st.session_state.user_likes if idx in valid_indices
     }
-    st.session_state.favorites = {
+    st.session_state.favorites = [
         idx for idx in st.session_state.favorites if idx in valid_indices
-    }
+    ]
 
     if not articles:
         st.warning("No papers found in the selected date range.")
@@ -263,8 +263,11 @@ if st.session_state.menu_option == "Home":
                 if st.button(
                     f"⭐ Add to favorites ({i})", key=f"favorite_{i}"
                 ):
-                    st.session_state.favorites.add(i)
-                    st.success("Paper added to favorites! 🎉")
+                    if i not in st.session_state.favorites:
+                        st.session_state.favorites.append(i)
+                        st.success("Paper added to favorites! 🎉")
+                    else:
+                        st.info("Paper already in favorites.")
 
                 st.markdown('</div>', unsafe_allow_html=True)
 
@@ -274,7 +277,7 @@ elif st.session_state.menu_option == "Favorites":
     if not st.session_state.favorites:
         st.write("You have not added any favorite papers yet.")
     else:
-        for i in sorted(st.session_state.favorites):
+        for i in st.session_state.favorites:
             if i < len(st.session_state.articles):  # Ensure the index is valid
                 result = st.session_state.articles[i]
                 with st.container():
