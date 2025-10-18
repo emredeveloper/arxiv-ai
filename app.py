@@ -1,33 +1,28 @@
-import streamlit as st
-import arxiv
 import re
 from datetime import datetime, timedelta
+
+import arxiv
+import streamlit as st
 from deep_translator import GoogleTranslator
+from dotenv import load_dotenv
+
+load_dotenv()
+
+st.set_page_config(
+    page_title="arXiv'de Güncel Makine Öğrenmesi Makaleleri",
+    page_icon="📚",
+    layout="wide",
+)
 
 # Regex pattern for GitHub links (defined globally)
 github_pattern = r"https://github\.com/[a-zA-Z0-9\-_]+/[a-zA-Z0-9\-_]+"
 
-# Streamlit başlık
-if "menu_option" not in st.session_state or st.session_state.menu_option == "Ana Sayfa":
-    st.title("📚 arXiv'de Güncel Makine Öğrenmesi Makaleleri")
+MENU_OPTIONS = ["Ana Sayfa", "Makine Öğrenmesi", "Transformers", "Favoriler"]
 
-# Menü butonları
-def main_menu():
-    st.sidebar.markdown("### Menü")
-    
-    # Menü butonları
-    if st.sidebar.button("🏠 Ana Sayfa"):
-        st.session_state.menu_option = "Ana Sayfa"
-    if st.sidebar.button("🤖 Makine Öğrenmesi"):
-        st.session_state.menu_option = "Makine Öğrenmesi"
-    if st.sidebar.button("⚡ Transformers"):
-        st.session_state.menu_option = "Transformers"
-    if st.sidebar.button("⭐ Favoriler"):
-        st.session_state.menu_option = "Favoriler"
 
-    # Sosyal medya bağlantıları (sadece Ana Sayfa'da göster)
-    if st.session_state.menu_option == "Ana Sayfa":
-        st.sidebar.markdown("""
+def render_social_links() -> None:
+    st.sidebar.markdown(
+        """
         <div style="text-align: center;">
             <a href="https://github.com/emredeveloper" target="_blank" style="margin-right: 10px;">
                 <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width="30" alt="GitHub">
@@ -36,19 +31,124 @@ def main_menu():
                 <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="30" alt="LinkedIn">
             </a>
         </div>
-        """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True,
+    )
 
-# Session state'te menü seçeneğini saklama
-if "menu_option" not in st.session_state:
-    st.session_state.menu_option = "Ana Sayfa"
 
-# Favoriler için session state
+def main_menu() -> None:
+    st.sidebar.markdown("### Menü")
+
+    if "menu_option" not in st.session_state:
+        st.session_state.menu_option = MENU_OPTIONS[0]
+
+    selected_option = st.sidebar.radio(
+        "Sayfa seçiniz",
+        MENU_OPTIONS,
+        index=MENU_OPTIONS.index(st.session_state.menu_option),
+        label_visibility="collapsed",
+    )
+    st.session_state.menu_option = selected_option
+
+    if selected_option == "Ana Sayfa":
+        render_social_links()
+
+
+st.title("📚 arXiv'de Güncel Makine Öğrenmesi Makaleleri")
+
+# Favoriler ve makaleler için session state
 if "favorites" not in st.session_state:
     st.session_state.favorites = set()
-
-# Articles için session state
 if "articles" not in st.session_state:
     st.session_state.articles = []
+if "likes" not in st.session_state:
+    st.session_state.likes = {}
+if "user_likes" not in st.session_state:
+    st.session_state.user_likes = set()
+
+
+@st.cache_resource(show_spinner=False)
+def get_translator(dest_language: str) -> GoogleTranslator:
+    return GoogleTranslator(source="auto", target=dest_language)
+
+
+@st.cache_data(ttl=600, show_spinner=False)
+def fetch_articles(max_results: int, sort_by: str):
+    query = "cat:cs.LG"
+    sort_order = (
+        arxiv.SortOrder.Descending
+        if sort_by == "Yeniden Eskiye"
+        else arxiv.SortOrder.Ascending
+    )
+
+    client = arxiv.Client(
+        page_size=min(max_results, 100),
+        delay=3,
+        num_retries=2,
+    )
+
+    search = arxiv.Search(
+        query=query,
+        max_results=max_results,
+        sort_by=arxiv.SortCriterion.SubmittedDate,
+        sort_order=sort_order,
+    )
+    return list(client.results(search))
+
+
+def translate_text(text: str, dest_language: str = "tr") -> str:
+    try:
+        translator = get_translator(dest_language)
+        return translator.translate(text)
+    except Exception as exc:
+        st.error(f"Çeviri hatası: {exc}")
+        return text
+
+
+def load_custom_css() -> None:
+    st.markdown(
+        """
+        <style>
+        .card {
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .card h3 {
+            color: #2c3e50;
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .card h5 {
+            color: #34495e;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .stButton button {
+            background-color: #3498db;
+            color: white;
+            border-radius: 8px;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        .stButton button:hover {
+            background-color: #2980b9;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
 # Menüyü yükle
 main_menu()
@@ -64,20 +164,6 @@ if st.session_state.menu_option == "Ana Sayfa":
     end_date = st.sidebar.date_input("Bitiş Tarihi", datetime.now())
 
     # ArXiv'den makaleleri çekme
-    @st.cache_data
-    def fetch_articles(max_results, sort_by):
-        query = "cat:cs.LG"
-        sort_order = arxiv.SortOrder.Descending if sort_by == "Yeniden Eskiye" else arxiv.SortOrder.Ascending
-
-        client = arxiv.Client()
-        search = arxiv.Search(
-            query=query,
-            max_results=max_results,
-            sort_by=arxiv.SortCriterion.SubmittedDate,
-            sort_order=sort_order
-        )
-        return list(client.results(search))
-
     articles = fetch_articles(max_results, sort_by)
 
     # Tarih aralığına göre filtreleme
@@ -85,71 +171,20 @@ if st.session_state.menu_option == "Ana Sayfa":
 
     # Store articles in session state
     st.session_state.articles = articles
+    valid_indices = set(range(len(articles)))
+    st.session_state.likes = {
+        idx: st.session_state.likes.get(idx, 0) for idx in valid_indices
+    }
+    st.session_state.user_likes = {
+        idx for idx in st.session_state.user_likes if idx in valid_indices
+    }
+    st.session_state.favorites = {
+        idx for idx in st.session_state.favorites if idx in valid_indices
+    }
 
     if not articles:
         st.warning("Belirtilen tarih aralığında makale bulunamadı.")
     else:
-        # Session state: Like ve kullanıcı etkileşimlerini saklama
-        if "likes" not in st.session_state:
-            st.session_state.likes = {}
-        if "user_likes" not in st.session_state:
-            st.session_state.user_likes = set()
-
-        # Çeviri fonksiyonu
-        def translate_text(text, dest_language="tr"):
-            try:
-                translated = GoogleTranslator(source='auto', target=dest_language).translate(text)
-                return translated
-            except Exception as e:
-                st.error(f"Çeviri hatası: {e}")
-                return text
-
-        # CSS ile modern stil
-        def load_custom_css():
-            st.markdown(
-                """
-                <style>
-                .card {
-                    padding: 20px;
-                    border-radius: 15px;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                    margin-bottom: 20px;
-                    background-color: #f8f9fa;
-                    border: 1px solid #e0e0e0;
-                    transition: transform 0.3s ease, box-shadow 0.3s ease;
-                }
-                .card:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-                }
-                .card h3 {
-                    color: #2c3e50;
-                    font-size: 20px;
-                    margin-top: 0;
-                    margin-bottom: 10px;
-                }
-                .card h5 {
-                    color: #34495e;
-                    font-size: 16px;
-                    margin-bottom: 5px;
-                }
-                .stButton button {
-                    background-color: #3498db;
-                    color: white;
-                    border-radius: 8px;
-                    border: none;
-                    padding: 10px 20px;
-                    font-size: 14px;
-                    transition: background-color 0.3s ease;
-                }
-                .stButton button:hover {
-                    background-color: #2980b9;
-                }
-                </style>
-                """,
-                unsafe_allow_html=True
-            )
-
         load_custom_css()
 
         # Makale bilgilerini görüntüleme
@@ -214,7 +249,7 @@ elif st.session_state.menu_option == "Favoriler":
     if not st.session_state.favorites:
         st.write("Henüz favori makaleniz yok.")
     else:
-        for i in st.session_state.favorites:
+        for i in sorted(st.session_state.favorites):
             if i < len(st.session_state.articles):  # Ensure the index is valid
                 result = st.session_state.articles[i]
                 with st.container():

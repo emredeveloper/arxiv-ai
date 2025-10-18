@@ -15,7 +15,7 @@ Bu linkten siteye erişebilirsin : https://arxiv-ai.streamlit.app/
 ## Kurulum
 
 1. **Python Kurulumu**:
-   - Projeyi çalıştırmak için Python 3.8 veya üzeri bir sürüm gereklidir.
+   - Projeyi çalıştırmak için Python 3.10 veya üzeri bir sürüm gereklidir.
    - Python'u [resmi sitesinden](https://www.python.org/downloads/) indirip kurabilirsiniz.
 
 2. **Proje Dosyalarını İndirme**:
