@@ -277,7 +277,7 @@ elif st.session_state.menu_option == "Favorites":
     if not st.session_state.favorites:
         st.write("You have not added any favorite papers yet.")
     else:
-        for i in st.session_state.favorites:
+        for i in sorted(st.session_state.favorites):
             if i < len(st.session_state.articles):  # Ensure the index is valid
                 result = st.session_state.articles[i]
                 with st.container():
