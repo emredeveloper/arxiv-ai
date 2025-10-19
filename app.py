@@ -39,13 +39,16 @@ def render_social_links() -> None:
 def main_menu() -> None:
     st.sidebar.markdown("### Menu")
 
-    if "menu_option" not in st.session_state:
-        st.session_state.menu_option = MENU_OPTIONS[0]
+    current_option = st.session_state.get("menu_option", MENU_OPTIONS[0])
+
+    if current_option not in MENU_OPTIONS:
+        current_option = MENU_OPTIONS[0]
+        st.session_state.menu_option = current_option
 
     selected_option = st.sidebar.radio(
         "Select a page",
         MENU_OPTIONS,
-        index=MENU_OPTIONS.index(st.session_state.menu_option),
+        index=MENU_OPTIONS.index(current_option),
         label_visibility="collapsed",
     )
     st.session_state.menu_option = selected_option
