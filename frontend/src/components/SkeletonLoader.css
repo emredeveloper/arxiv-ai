@@ -1,0 +1,141 @@
+.skeleton-card {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl);
+    margin-bottom: var(--spacing-xl);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-header {
+    margin-bottom: var(--spacing-lg);
+}
+
+.skeleton-title {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-sm);
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.skeleton-title-short {
+    height: 32px;
+    width: 70%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    animation: shimmer 1.5s ease-in-out infinite;
+    animation-delay: 0.1s;
+}
+
+.skeleton-badges {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.skeleton-badge {
+    height: 24px;
+    width: 100px;
+    background: rgba(102, 126, 234, 0.2);
+    border-radius: var(--radius-sm);
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.skeleton-badge:nth-child(2) {
+    width: 120px;
+    animation-delay: 0.2s;
+}
+
+.skeleton-badge:nth-child(3) {
+    width: 90px;
+    animation-delay: 0.3s;
+}
+
+.skeleton-date {
+    height: 20px;
+    width: 200px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--spacing-md);
+    animation: shimmer 1.5s ease-in-out infinite;
+    animation-delay: 0.4s;
+}
+
+.skeleton-text {
+    height: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--spacing-sm);
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.skeleton-text:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.skeleton-text:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.skeleton-text-short {
+    height: 16px;
+    width: 60%;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--spacing-lg);
+    animation: shimmer 1.5s ease-in-out infinite;
+    animation-delay: 0.3s;
+}
+
+.skeleton-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.skeleton-button {
+    height: 40px;
+    width: 120px;
+    background: rgba(102, 126, 234, 0.3);
+    border-radius: var(--radius-md);
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.skeleton-button:nth-child(2) {
+    width: 100px;
+    animation-delay: 0.1s;
+}
+
+.skeleton-button:nth-child(3) {
+    width: 80px;
+    animation-delay: 0.2s;
+}
+
+@keyframes shimmer {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.95;
+    }
+}

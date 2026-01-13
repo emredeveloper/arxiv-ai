@@ -1,55 +1,262 @@
-# arXiv Makale Gösterim Uygulaması
+# arXiv AI - Modern Makale Takip Sistemi
 
-Bu Streamlit uygulaması, arXiv'deki güncel makine öğrenmesi makalelerini çeker ve kullanıcıya gösterir. Kullanıcılar, makalelerin başlıklarını ve özetlerini Türkçeye çevirebilir, makaleleri beğenebilir ve GitHub bağlantılarını görüntüleyebilir.
+**FastAPI + React** ile geliştirilmiş, modern ve profesyonel bir arXiv makale arama ve takip uygulaması.
 
-## Özellikler
+## ✨ Özellikler
 
-- **Güncel Makaleler**: arXiv'den "Computer Science > Machine Learning" kategorisindeki güncel makaleleri çeker.
-- **Türkçe Çeviri**: Makale başlıklarını ve özetlerini Türkçeye çevirme imkanı.
-- **Beğenme Sistemi**: Kullanıcılar makaleleri beğenebilir ve beğenilerini kaydedebilir.
-- **GitHub Bağlantıları**: Makalelerde GitHub bağlantıları varsa, bu bağlantıları gösterir.
-- **Menü Sistemi**: Ana Sayfa, Makine Öğrenmesi ve Transformers gibi farklı sayfalar arasında geçiş yapma imkanı.
+### 🎯 Ana Özellikler
+- **Modern UI/UX**: React ile glassmorphism, gradients ve animasyonlar
+- **RESTful API**: FastAPI ile yüksek performanslı backend
+- **Veri Kalıcılığı**: SQLAlchemy ile SQLite veritabanı
+- **Çeviri Önbelleği**: Tekrarlayan çeviriler için hızlı erişim
+- **Responsive Design**: Tüm cihazlarda mükemmel görünüm
+- **Real-time Feedback**: Toast notifications ile anlık bildirimler
 
-## Kurulum
+### 📚 Sayfalar
+1. **Ana Sayfa**: Gelişmiş filtreleme ile makale arama
+2. **Makine Öğrenmesi**: 5 farklı alt kategori desteği
+3. **Transformers**: Anahtar kelime ve model bazlı arama
+4. **Favoriler**: Kategori filtreleme ile kayıtlı makaleler
+5. **İstatistikler**: Görsel istatistikler ve analytics
 
-1. **Python Kurulumu**:
-   - Projeyi çalıştırmak için Python 3.8 veya üzeri bir sürüm gereklidir.
-   - Python'u [resmi sitesinden](https://www.python.org/downloads/) indirip kurabilirsiniz.
+### 🛡️ Teknik Özellikler
+- **Backend**: FastAPI, SQLAlchemy, Pydantic
+- **Frontend**: React 18, React Router, Axios
+- **Styling**: Modern CSS with CSS Variables
+- **Icons**: Lucide React
+- **Notifications**: React Hot Toast
+- **Build Tool**: Vite
 
-2. **Proje Dosyalarını İndirme**:
-   - Projeyi bilgisayarınıza indirin veya klonlayın:
-     ```bash
-     git clone https://github.com/kullanici_adi/proje_repo.git
-     cd proje_repo
-     ```
+## 📁 Proje Yapısı
 
-3. **Bağımlılıkları Yükleme**:
-   - Proje dizininde `requirements.txt` dosyası bulunmaktadır. Bu dosyadaki bağımlılıkları yüklemek için aşağıdaki komutu çalıştırın:
-     ```bash
-     pip install -r requirements.txt
-     ```
+```
+arxiv-ai/
+├── backend/
+│   ├── app/
+│   │   ├── api/              # API endpoints
+│   │   │   ├── articles.py
+│   │   │   ├── favorites.py
+│   │   │   ├── likes.py
+│   │   │   ├── translation.py
+│   │   │   └── statistics.py
+│   │   ├── services/         # Business logic
+│   │   │   ├── arxiv_service.py
+│   │   │   └── translation_service.py
+│   │   ├── config.py         # Configuration
+│   │   ├── database.py       # Database setup
+│   │   ├── models.py         # SQLAlchemy models
+│   │   ├── schemas.py        # Pydantic schemas
+│   │   └── main.py           # FastAPI app
+│   ├── requirements.txt
+│   └── .env.example
+├── frontend/
+│   ├── src/
+│   │   ├── components/       # React components
+│   │   │   ├── ArticleCard.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   └── Navbar.css
+│   │   ├── pages/            # Page components
+│   │   │   ├── HomePage.jsx
+│   │   │   ├── MachineLearningPage.jsx
+│   │   │   ├── TransformersPage.jsx
+│   │   │   ├── FavoritesPage.jsx
+│   │   │   └── StatisticsPage.jsx
+│   │   ├── services/         # API client
+│   │   │   └── api.js
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
+│   ├── package.json
+│   ├── vite.config.js
+│   └── index.html
+└── README.md
+```
 
-## Çalıştırma
+## 🚀 Kurulum
 
-1. **Streamlit Uygulamasını Başlatma**:
-   - Proje dizininde aşağıdaki komutu çalıştırarak uygulamayı başlatın:
-     ```bash
-     streamlit run app.py
-     ```
+### Gereksinimler
+- Python 3.8+
+- Node.js 16+
+- npm veya yarn
 
-2. **Tarayıcıda Görüntüleme**:
-   - Uygulama başlatıldıktan sonra, tarayıcınızda otomatik olarak açılacaktır. Eğer açılmazsa, terminalde gösterilen URL'yi tarayıcınıza yapıştırın (örneğin: `http://localhost:8501`).
+### 1. Backend Kurulumu
 
-## Katkıda Bulunma
+```bash
+# Backend dizinine git
+cd backend
 
-Eğer bu projeye katkıda bulunmak isterseniz, lütfen aşağıdaki adımları takip edin:
+# Virtual environment oluştur (önerilen)
+python -m venv venv
 
-1. Projeyi fork edin.
-2. Yeni bir branch oluşturun (`git checkout -b yeni-ozellik`).
-3. Değişikliklerinizi yapın ve commit edin (`git commit -am 'Yeni özellik eklendi'`).
-4. Branch'inizi push edin (`git push origin yeni-ozellik`).
-5. GitHub üzerinden bir Pull Request oluşturun.
+# Windows
+venv\Scripts\activate
+# Linux/Mac
+source venv/bin/activate
 
-## Lisans
+# Bağımlılıkları yükle
+pip install -r requirements.txt
 
-Bu proje MIT Lisansı altında lisanslanmıştır. Daha fazla bilgi için `LICENSE` dosyasını inceleyebilirsiniz.
+# Environment dosyasını oluştur
+copy .env.example .env  # Windows
+cp .env.example .env    # Linux/Mac
+
+# Uygulamayı başlat
+uvicorn app.main:app --reload
+```
+
+Backend şu adreste çalışacak: `http://localhost:8000`
+API Dokümantasyonu: `http://localhost:8000/api/docs`
+
+### 2. Frontend Kurulumu
+
+```bash
+# Frontend dizinine git
+cd frontend
+
+# Bağımlılıkları yükle
+npm install
+
+# Development server'ı başlat
+npm run dev
+```
+
+Frontend şu adreste çalışacak: `http://localhost:3000`
+
+## 🎮 Kullanım
+
+### Backend API Endpoints
+
+#### Articles
+- `GET /api/v1/articles/` - Makale listesi
+- `GET /api/v1/articles/category/{category}` - Kategoriye göre makaleler
+- `GET /api/v1/articles/search?keyword={keyword}` - Anahtar kelime araması
+
+#### Favorites
+- `GET /api/v1/favorites/` - Favorileri listele
+- `POST /api/v1/favorites/` - Favori ekle
+- `DELETE /api/v1/favorites/{arxiv_id}` - Favori sil
+- `GET /api/v1/favorites/check/{arxiv_id}` - Favori kontrolü
+
+#### Likes
+- `POST /api/v1/likes/{arxiv_id}` - Beğeni ekle
+- `GET /api/v1/likes/{arxiv_id}` - Beğeni sayısı
+
+#### Translation
+- `POST /api/v1/translate/` - Metin çevir
+
+#### Statistics
+- `GET /api/v1/statistics/` - İstatistikleri getir
+
+### Frontend Sayfalar
+
+- `/` - Ana sayfa
+- `/machine-learning` - Makine öğrenmesi
+- `/transformers` - Transformers
+- `/favorites` - Favoriler
+- `/statistics` - İstatistikler
+
+## 🗄️ Veritabanı
+
+SQLite veritabanı otomatik olarak oluşturulur. Tablolar:
+
+- **favorites**: Favori makaleler
+- **likes**: Beğeniler
+- **translations**: Çeviri önbelleği
+- **user_interactions**: Kullanıcı etkileşimleri
+
+## 🎨 Özelleştirme
+
+### Backend
+
+`backend/app/config.py` dosyasından ayarları değiştirebilirsiniz:
+- CORS origins
+- Database URL
+- Cache TTL
+- Secret key
+
+### Frontend
+
+`frontend/src/index.css` dosyasındaki CSS değişkenlerini düzenleyerek renk şemasını özelleştirebilirsiniz.
+
+## 📊 Production Build
+
+### Backend
+
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm run build
+npm run preview
+```
+
+Build dosyaları `frontend/dist` klasöründe oluşturulur.
+
+## 🐛 Hata Ayıklama
+
+### Backend Logları
+FastAPI otomatik olarak detaylı hata mesajları gösterir. `/api/docs` adresinden Swagger UI ile API'yi test edebilirsiniz.
+
+### Frontend Logları
+Browser console'da hataları görebilirsiniz. React DevTools kullanarak component state'lerini inceleyebilirsiniz.
+
+### Veritabanı Sıfırlama
+
+```bash
+# Backend dizininde
+rm arxiv_ai.db
+# Uygulamayı yeniden başlatın, otomatik oluşturulur
+```
+
+## 🔒 Güvenlik
+
+- Production'da `SECRET_KEY` değiştirin
+- HTTPS kullanın
+- CORS ayarlarını production için güncelleyin
+- Rate limiting ekleyin (önerilir)
+
+## 🤝 Katkıda Bulunma
+
+1. Fork edin
+2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
+3. Commit edin (`git commit -m 'Add amazing feature'`)
+4. Push edin (`git push origin feature/amazing-feature`)
+5. Pull Request açın
+
+## 📝 Lisans
+
+MIT License
+
+## 👨‍💻 Geliştirici
+
+**Emre Karataş**
+- GitHub: [@emredeveloper](https://github.com/emredeveloper)
+- LinkedIn: [cihatemrekaratas](https://www.linkedin.com/in/cihatemrekaratas/)
+
+## 🙏 Teşekkürler
+
+- [arXiv](https://arxiv.org/)
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+
+## 📈 Roadmap
+
+- [ ] User authentication
+- [ ] Dark/Light mode toggle
+- [ ] Advanced search filters
+- [ ] Export favorites (PDF, CSV)
+- [ ] Email notifications
+- [ ] ML-based article recommendations
+- [ ] Multi-language support
+- [ ] Mobile app (React Native)
+
+---
+
+**Not**: Bu proje modern web teknolojileri ile geliştirilmiş, production-ready bir uygulamadır. Önerileriniz için issue açabilirsiniz!

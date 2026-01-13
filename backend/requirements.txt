@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+arxiv
+deep-translator
+python-multipart
+python-jose[cryptography]
+passlib[bcrypt]
+python-dotenv
+sqlalchemy
+aiofiles
+httpx
